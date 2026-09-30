@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="NGHIENCROCS - CROCS AND MORE - ONLY AUTHENTIC">
+    
+    <!-- Open Graph Data cho Zalo & Facebook -->
+    <meta property="og:title" content="NghienCrocs - Authentic Only">
+    <meta property="og:description" content="CROCS AND MORE - ONLY AUTHENTIC">
+    <meta property="og:type" content="website">
+    
+    <!-- Link ảnh đại diện hiển thị khi share (Ảnh vuông) -->
+    <meta property="og:image" content="https://i.ibb.co/63NZcB6/1790680306746-6562503958923777144-6562503958923777144-09e4980cca67879fd769524d3a5e2800.jpg">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    
+    <title>NghienCrocs - Authentic</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-surface: #FAFAFA;
+            --text-primary: #262626;      /* Đen xám đặc trưng IG */
+            --text-muted: #737373;        /* Xám nhạt */
+            --bg-elevated: #FFFFFF;       /* Trắng tinh */
+            --bg-secondary: #EFEFEF;      /* Xám nền nút */
+            --border-color: #DBDBDB;      /* Xám viền */
+            --radius-btn: 30px;
+            --radius-input: 24px;
+        }
+
+        body {
+            /* Dùng font Outfit cho phần dưới, Inter cho phần IG ở trên */
+            font-family: 'Outfit', 'Inter', sans-serif;
+            background-color: var(--bg-surface);
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 0px; height: 0px; display: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* GRID KIỂU MỚI (Từ Web 1) */
+        .masonry-grid { 
+            column-count: 2; 
+            column-gap: 16px; 
+        }
+        .masonry-item { 
+            break-inside: avoid; 
+            margin-bottom: 24px; 
+            display: inline-block;
+            width: 100%;
+        }
+        @media (min-width: 768px) { 
+            .masonry-grid { column-count: 3; column-gap: 20px; } 
+        }
+        @media (min-width: 1024px) { 
+            .masonry-grid { column-count: 4; column-gap: 28px; } 
+        }
+
+        /* Thẻ sản phẩm Card 3D & Nổi (Xám) */
+        .product-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px -4px rgba(0, 0, 0, 0.1);
+            border-color: #A8A8A8;
+        }
+
+        /* Nút bấm Web 1 (Xám) */
+        .btn-solid {
+            background-color: var(--text-primary);
+            color: #FFFFFF;
+            border-radius: var(--radius-btn);
+            padding: 12px 24px;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(38, 38, 38, 0.2);
+        }
+        .btn-solid:hover { background-color: #000000; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); }
+        .btn-solid:active { transform: scale(0.96); }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-primary);
+            border-radius: var(--radius-btn);
+            padding: 12px 24px;
+            font-weight: 500;
+            font-size: 16px;
+            border: 1.5px solid var(--text-primary);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .btn-outline:hover { background-color: var(--bg-secondary); }
+        .btn-outline:active { transform: scale(0.96); }
+
+        /* Nút Tag (Pill) */
+        .tag-btn {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            border-radius: var(--radius-btn);
+            padding: 8px 18px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        @media (min-width: 768px) {
+            .tag-btn { padding: 9px 22px; font-size: 14px; }
+        }
+        .tag-btn:hover { background-color: #DBDBDB; }
+        .tag-btn.active {
+            background-color: var(--text-primary);
+            color: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(38, 38, 38, 0.2);
+        }
+
+        .input-flat {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            border-radius: var(--radius-input);
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 1px solid var(--border-color);
+            outline: none;
+            width: 100%;
+            transition: all 0.2s ease;
+        }
+        .input-flat:focus {
+            box-shadow: 0 0 0 3px rgba(38, 38, 38, 0.1);
+            border-color: var(--text-primary);
+        }
+
+        @keyframes fadeUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+        .animate-fade-up { opacity: 0; animation: fadeUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        
+        @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+        .animate-fade-in { opacity: 0; animation: fadeIn 0.3s forwards; }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative">
+
+    <!-- NAVBAR INSTAGRAM TRÊN CÙNG -->
+    <nav class="fixed top-0 z-50 w-full bg-white border-b border-[#DBDBDB] h-11 flex items-center justify-center">
+        <div class="max-w-[935px] w-full px-4 flex justify-between items-center">
+            <div class="w-8"></div>
+            <h1 class="text-[16px] font-semibold text-[#262626] cursor-pointer uppercase tracking-wide font-['Inter']" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+                NGHIENCROCS
+            </h1>
+            <div class="w-8 flex justify-end" id="admin-trigger-btn">
+                <svg class="w-6 h-6 cursor-pointer text-[#262626] hover:opacity-70 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER PROFILE KIỂU INSTAGRAM -->
+    <header class="w-full bg-[#FAFAFA] pt-16 pb-4">
+        <section class="max-w-[935px] mx-auto px-4 font-['Inter']">
+            <div class="flex items-center gap-6 md:gap-10">
+                <div class="flex-shrink-0">
+                    <div class="w-20 h-20 md:w-36 md:h-36 rounded-full bg-white p-[2px] border border-[#DBDBDB]">
+                        <div class="w-full h-full rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="https://i.ibb.co/63NZcB6/1790680306746-6562503958923777144-6562503958923777144-09e4980cca67879fd769524d3a5e2800.jpg" alt="NghienCrocs" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-xl md:text-2xl font-normal text-[#262626] mb-3 md:mb-4">nghienauthentic.store</h2>
+                    
+                    <div class="hidden md:flex gap-6 mb-4">
+                        <p class="text-[16px]"><span class="font-semibold" id="post-count-desktop">0</span> bài viết</p>
+                        <p class="text-[16px]"><span class="font-semibold">10.5K</span> người theo dõi</p>
+                        <p class="text-[16px]"><span class="font-semibold">0</span> đang theo dõi</p>
+                    </div>
+
+                    <div class="hidden md:block">
+                        <p class="font-semibold text-[14px]">NGHIENCROCS</p>
+                        <p class="text-[14px] whitespace-pre-line text-[#262626]">CROCS AND MORE - ONLY AUTHENTIC
+📍 Based in Vietnam</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 md:hidden">
+                <p class="font-semibold text-[14px]">NGHIENCROCS</p>
+                <p class="text-[14px] whitespace-pre-line text-[#262626]">CROCS AND MORE - ONLY AUTHENTIC
+📍 Based in Vietnam</p>
+            </div>
+
+            <div class="flex gap-2 mt-4 md:max-w-sm md:mt-6">
+                <a href="https://www.instagram.com/Nghienauthentic.store/" target="_blank" class="flex-1 bg-[#EFEFEF] hover:bg-[#DBDBDB] text-[#262626] font-semibold text-[14px] py-1.5 rounded-lg text-center transition">Nhắn Instagram</a>
+                <a href="https://zalo.me/0968765312" target="_blank" class="flex-1 bg-[#0095F6] hover:bg-[#1877F2] text-white font-semibold text-[14px] py-1.5 rounded-lg text-center transition">Zalo: 0968765312</a>
+            </div>
+
+            <div class="flex md:hidden justify-around border-t border-[#DBDBDB] mt-5 pt-3">
+                <div class="text-center flex flex-col">
+                    <span class="font-semibold text-[14px]" id="post-count-mobile">0</span>
+                    <span class="text-[#737373] text-[13px]">bài viết</span>
+                </div>
+                <div class="text-center flex flex-col">
+                    <span class="font-semibold text-[14px]">10.5K</span>
+                    <span class="text-[#737373] text-[13px]">người theo dõi</span>
+                </div>
+                <div class="text-center flex flex-col">
+                    <span class="font-semibold text-[14px]">0</span>
+                    <span class="text-[#737373] text-[13px]">đang theo dõi</span>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <!-- THANH TAG STICKY (KIỂU WEB 1 XÁM) -->
+    <nav class="sticky top-11 z-40 w-full bg-[#FAFAFA]/90 backdrop-blur-md border-y border-[#DBDBDB] py-3 md:py-4 transition-all">
+        <div class="max-w-[1905px] mx-auto w-full">
+            <div id="tags-container" class="flex flex-wrap gap-2.5 px-3 md:px-4 justify-center items-center">
+                <!-- JS chèn Tag -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- MASONRY GRID Y CHANG WEB 1 -->
+    <main class="flex-grow px-4 md:px-8 lg:px-12 max-w-[1905px] mx-auto w-full relative pt-8 pb-24 z-10 bg-[#FAFAFA]">
+        <!-- Loader -->
+        <div id="loader" class="text-center py-20 flex flex-col items-center justify-center">
+            <svg class="animate-spin h-9 w-9 text-[#262626] mb-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+            <p class="text-[14px] text-[#737373] font-medium tracking-wider">Đang cập nhật kho hàng...</p>
+        </div>
+        
+        <!-- Grid Sản phẩm -->
+        <div id="catalog-grid" class="masonry-grid hidden"></div>
+    </main>
+
+    <!-- FOOTER ĐƠN GIẢN -->
+    <footer class="bg-white/90 backdrop-blur-sm border-t border-[#DBDBDB] pt-12 pb-10 px-4 relative z-20">
+        <div class="max-w-[1905px] mx-auto flex flex-col items-center text-center">
+            <h2 class="text-[20px] font-bold tracking-tight text-[#262626] mb-1 uppercase">NGHIENCROCS</h2>
+            <p class="text-[#737373] text-[13px] mb-6 font-medium">Crocs and More - Only Authentic</p>
+        </div>
+    </footer>
+
+    <!-- Nút Zalo nổi góc dưới bên phải (Xám Đen) -->
+    <a href="https://zalo.me/0968765312" target="_blank" class="fixed bottom-6 right-6 z-40 bg-[#262626] text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all flex items-center justify-center animate-bounce border-2 border-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+    </a>
+
+    <!-- MODAL REVIEW (Y CHANG WEB 1 NHƯNG TÔNG XÁM TRẮNG) -->
+    <div id="product-modal" class="fixed inset-0 z-[60] hidden bg-black/60 backdrop-blur-sm flex flex-col p-4 transition-opacity overflow-y-auto">
+        <button id="close-modal" class="absolute top-6 right-6 text-[#262626] p-3 bg-white rounded-full hover:bg-[#EFEFEF] transition z-10 shadow-lg">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        
+        <div class="max-w-lg w-full mx-auto mt-14 flex flex-col h-fit pb-12 animate-fade-up bg-white rounded-3xl p-6 shadow-2xl border border-[#DBDBDB]">
+            <div class="w-full bg-[#FAFAFA] rounded-2xl mb-6 flex items-center justify-center overflow-hidden max-h-[65vh] border border-[#EFEFEF]">
+                <img id="modal-img" src="" alt="Sản phẩm" class="w-full h-auto object-contain">
+            </div>
+            
+            <div class="mb-6 bg-[#FAFAFA] rounded-2xl p-5 text-center flex flex-col items-center justify-center border border-[#DBDBDB]">
+                <p id="modal-note-text" class="text-2xl md:text-3xl font-bold text-[#262626] mb-1 leading-tight uppercase"></p>
+                <p id="modal-size-text" class="text-lg md:text-xl font-semibold text-[#737373] uppercase"></p>
+            </div>
+            
+            <div class="flex flex-row gap-3 w-full">
+                <a href="https://zalo.me/0968765312" target="_blank" class="btn-solid flex-1 py-3.5 text-[14px]">Nhắn Zalo</a>
+                <a href="https://www.instagram.com/Nghienauthentic.store/" target="_blank" class="btn-outline flex-1 py-3.5 text-[14px]">Instagram</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NHẬP MẬT KHẨU ADMIN -->
+    <div id="password-modal" class="fixed inset-0 z-[70] hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="w-full max-w-sm text-center animate-fade-in bg-white rounded-3xl p-8 border border-[#DBDBDB] shadow-2xl">
+            <h2 class="text-2xl font-bold mb-6 text-[#262626]">Mã Xác Thực</h2>
+            <input type="password" id="pass-input" autocomplete="off" class="input-flat mb-4 text-center tracking-widest text-2xl font-bold" placeholder="••••">
+            <p id="pass-error" class="text-red-500 text-[14px] mb-4 font-medium hidden">Mã không chính xác</p>
+            <div class="flex gap-3">
+                <button id="cancel-pass-btn" class="flex-1 btn-outline py-2.5 text-[14px]">Hủy</button>
+                <button id="submit-pass-btn" class="flex-1 btn-solid py-2.5 text-[14px]">Truy cập</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD (TONG XÁM ĐEN) -->
+    <div id="admin-section" class="fixed inset-0 z-[60] hidden bg-[#FAFAFA] overflow-y-auto">
+        <div class="max-w-4xl mx-auto p-4 md:p-10 relative min-h-screen pb-24 animate-fade-in">
+            <div class="flex justify-between items-center pb-6 mb-8 mt-4 border-b border-[#DBDBDB]">
+                <h2 class="text-3xl font-bold text-[#262626] tracking-tight">Admin Dashboard</h2>
+                <button id="close-admin" class="btn-outline py-2 px-6 text-[14px]">Đóng</button>
+            </div>
+            
+            <!-- Dashboard Thống Kê -->
+            <div class="bg-[#262626] rounded-[24px] p-8 mb-12 flex flex-col items-center justify-center text-white shadow-xl">
+                <h3 class="text-[13px] font-semibold text-[#A8A8A8] mb-6 uppercase tracking-widest">Thống Kê Lượt Xem</h3>
+                <div class="flex w-full justify-around text-center divide-x divide-[#737373]">
+                    <div class="flex-1">
+                        <p class="text-5xl font-bold mb-2" id="stat-today">0</p>
+                        <p class="text-[12px] text-[#A8A8A8] uppercase tracking-wider">Hôm nay</p>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-5xl font-bold mb-2" id="stat-month">0</p>
+                        <p class="text-[12px] text-[#A8A8A8] uppercase tracking-wider">Tháng này</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Area -->
+            <div class="mb-16 bg-white p-6 md:p-8 rounded-3xl border border-[#DBDBDB]">
+                <h3 class="text-2xl font-bold text-[#262626] mb-6">Thêm Sản Phẩm Mới</h3>
+                
+                <input type="file" id="image-input" accept="image/*" class="w-full mb-6 text-[15px] text-[#737373] file:mr-4 file:py-3 file:px-6 file:border-0 file:rounded-full file:bg-[#EFEFEF] file:text-[#262626] file:font-semibold cursor-pointer hover:file:bg-[#DBDBDB] transition">
+                
+                <div class="mb-6">
+                    <label class="block text-[14px] font-semibold text-[#262626] mb-3">Danh Mục</label>
+                    <div id="upload-category-btns" class="flex flex-wrap gap-2"></div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-[14px] font-semibold text-[#262626] mb-2">Kích cỡ (Để trống sẽ ẩn)</label>
+                    <input type="text" id="upload-size" autocomplete="off" class="input-flat bg-white" placeholder="VD: M4W6, 40...">
+                </div>
+                
+                <div class="mb-8">
+                    <label class="block text-[14px] font-semibold text-[#262626] mb-2">Ghi Chú</label>
+                    <input type="text" id="upload-note" autocomplete="off" class="input-flat bg-white" placeholder="VD: Hàng Sẵn...">
+                </div>
+
+                <button id="upload-btn" class="w-full btn-solid py-4 text-lg">
+                    Lưu Sản Phẩm
+                </button>
+                <div id="upload-status" class="text-center text-[14px] mt-4 font-semibold h-4 text-[#262626]"></div>
+            </div>
+
+            <!-- Quản Lý Kho -->
+            <div class="border-t border-[#DBDBDB] pt-12">
+                <h3 class="text-2xl font-bold text-[#262626] mb-6">Quản Lý Kho Hàng</h3>
+                
+                <div class="mb-8 flex flex-wrap gap-2" id="admin-tags-container"></div>
+                <div id="admin-delete-status" class="text-[14px] font-medium text-center text-[#262626] mb-6 h-4"></div>
+
+                <div id="admin-product-list" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+            </div>
+        </div>
+
+        <!-- Modal Sửa Sản Phẩm -->
+        <div id="admin-edit-modal" class="fixed inset-0 z-[80] hidden bg-black/60 backdrop-blur-sm flex flex-col items-center justify-center p-4">
+            <div class="bg-white border border-[#DBDBDB] rounded-3xl p-8 max-w-sm w-full animate-fade-in shadow-2xl">
+                <h3 class="text-2xl font-bold text-[#262626] mb-6 text-center">Cập Nhật</h3>
+                
+                <div class="mb-5">
+                    <label class="block text-[14px] font-semibold text-[#262626] mb-2">Danh Mục</label>
+                    <select id="edit-category" class="input-flat"></select>
+                </div>
+                
+                <div class="mb-5">
+                    <label class="block text-[14px] font-semibold text-[#262626] mb-2">Size (Để trống để ẩn)</label>
+                    <input type="text" id="edit-size" autocomplete="off" class="input-flat">
+                </div>
+
+                <div class="mb-8">
+                    <label class="block text-[14px] font-semibold text-[#262626] mb-2">Ghi Chú</label>
+                    <input type="text" id="edit-note" autocomplete="off" class="input-flat">
+                </div>
+
+                <div id="edit-status" class="text-center text-[14px] font-medium h-4 mb-6 text-[#0095F6]"></div>
+
+                <div class="flex flex-col gap-3">
+                    <button id="save-edit-btn" class="w-full btn-solid py-3">Lưu thay đổi</button>
+                    <button id="cancel-edit-btn" class="w-full btn-outline py-3">Hủy bỏ</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Xác nhận Xóa -->
+        <div id="custom-confirm-modal" class="fixed inset-0 z-[85] hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+            <div class="bg-white border border-[#DBDBDB] rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl animate-fade-in">
+                <div class="w-14 h-14 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                </div>
+                <h4 class="text-xl font-bold text-[#262626] mb-2">Xác nhận xóa</h4>
+                <p class="text-[14px] text-[#737373] mb-6">Bạn có chắc chắn muốn xóa vĩnh viễn sản phẩm này khỏi kho hàng không?</p>
+                <div class="flex gap-3">
+                    <button id="confirm-cancel-btn" class="flex-1 btn-outline py-2.5 text-[14px]">Hủy</button>
+                    <button id="confirm-delete-btn" class="flex-1 bg-red-500 hover:bg-red-600 text-white font-medium rounded-full py-2.5 text-[14px] transition-all shadow-md border-none">Xóa ngay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, serverTimestamp, query, orderBy, setDoc, getDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        // Firebase Web 2 (NghienCrocs - Dữ liệu riêng biệt)
+        const firebaseConfig = {
+            apiKey: "AIzaSyDGVScE2wj4g5IesmVTM2oMFQxohO5kuLQ",
+            authDomain: "nghiencrocs-cea31.firebaseapp.com",
+            projectId: "nghiencrocs-cea31",
+            storageBucket: "nghiencrocs-cea31.firebasestorage.app",
+            messagingSenderId: "675954282881",
+            appId: "1:675954282881:web:fe9a227177011fa2119880"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
+        // ImageKit chung nhưng up vào folder /nghiencrocs
+        const IK_KEY_TAIL = "jLWb5y2vikJfF8sQEiybpYJltTQ="; 
+        const IK_PRIVATE_KEY = "private_" + IK_KEY_TAIL;
+        const IK_UPLOAD_ENDPOINT = "https://upload.imagekit.io/api/v1/files/upload";
+        const IK_AUTH = "Basic " + btoa(IK_PRIVATE_KEY + ":");
+
+        // 3 Danh Mục như yêu cầu
+        const CATEGORIES = ['Tất cả', 'Crocs Basic', 'Crocs Collab', 'Charm Jibbitz'];
+        let shoesData = [];
+        let currentFilter = 'Tất cả';
+        let currentAdminFilter = 'Tất cả';
+        let activeUploadCategory = 'Crocs Basic';
+        let pendingDeleteId = null;
+
+        const tagsContainer = document.getElementById('tags-container');
+        const catalogGrid = document.getElementById('catalog-grid');
+        const loader = document.getElementById('loader');
+        
+        const modal = document.getElementById('product-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalSize = document.getElementById('modal-size-text');
+        const modalNote = document.getElementById('modal-note-text');
+        
+        const adminSec = document.getElementById('admin-section');
+        const uploadCategoryBtns = document.getElementById('upload-category-btns');
+        const adminTagsContainer = document.getElementById('admin-tags-container');
+        const adminProductList = document.getElementById('admin-product-list');
+        const editSelectCat = document.getElementById('edit-category');
+
+        // Hàm nén ảnh siêu nhẹ
+        function compressImage(file, maxWidth = 1200, quality = 0.82) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.src = event.target.result;
+                    img.onload = () => {
+                        let width = img.width;
+                        let height = img.height;
+                        if (width > maxWidth) {
+                            height = Math.round((height * maxWidth) / width);
+                            width = maxWidth;
+                        }
+                        const canvas = document.createElement('canvas');
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        canvas.toBlob((blob) => {
+                            if (blob) resolve(blob);
+                            else resolve(file);
+                        }, 'image/jpeg', quality);
+                    };
+                    img.onerror = () => resolve(file);
+                };
+                reader.onerror = () => resolve(file);
+            });
+        }
+        
+        // Thống kê truy cập (Riêng của NghienCrocs)
+        async function updatePageViews() {
+            if(sessionStorage.getItem('visited')) return;
+            sessionStorage.setItem('visited', 'true');
+            try {
+                const now = new Date();
+                const vnTime = new Date(now.getTime() + (7 * 60 * 60 * 1000));
+                const yyyy = vnTime.getUTCFullYear();
+                const mm = String(vnTime.getUTCMonth() + 1).padStart(2, '0');
+                const dd = String(vnTime.getUTCDate()).padStart(2, '0');
+                const dayKey = `${yyyy}-${mm}-${dd}`;
+                const monthKey = `${yyyy}-${mm}`;
+                const statRef = doc(db, 'analytics', 'views');
+                await setDoc(statRef, {
+                    [dayKey]: increment(1),
+                    [monthKey]: increment(1)
+                }, { merge: true });
+            } catch(e) {}
+        }
+
+        async function loadStatsForAdmin() {
+            try {
+                const now = new Date();
+                const vnTime = new Date(now.getTime() + (7 * 60 * 60 * 1000));
+                const yyyy = vnTime.getUTCFullYear();
+                const mm = String(vnTime.getUTCMonth() + 1).padStart(2, '0');
+                const dd = String(vnTime.getUTCDate()).padStart(2, '0');
+                const dayKey = `${yyyy}-${mm}-${dd}`;
+                const monthKey = `${yyyy}-${mm}`;
+                const docSnap = await getDoc(doc(db, 'analytics', 'views'));
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    document.getElementById('stat-today').innerText = data[dayKey] || 0;
+                    document.getElementById('stat-month').innerText = data[monthKey] || 0;
+                }
+            } catch (e) {}
+        }
+
+        CATEGORIES.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.className = `tag-btn ${cat === 'Tất cả' ? 'active' : ''}`;
+            btn.innerText = cat;
+            btn.onclick = () => {
+                document.querySelectorAll('#tags-container .tag-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = cat;
+                renderCatalog();
+            };
+            tagsContainer.appendChild(btn);
+            
+            if(cat !== 'Tất cả') {
+                const upBtn = document.createElement('button');
+                upBtn.className = `tag-btn ${cat === activeUploadCategory ? 'active' : 'bg-transparent border border-[#DBDBDB]'}`;
+                upBtn.innerText = cat;
+                upBtn.onclick = () => {
+                    document.querySelectorAll('#upload-category-btns .tag-btn').forEach(b => {
+                        b.classList.remove('active');
+                        b.classList.add('bg-transparent', 'border', 'border-[#DBDBDB]');
+                    });
+                    upBtn.classList.add('active');
+                    upBtn.classList.remove('bg-transparent', 'border', 'border-[#DBDBDB]');
+                    activeUploadCategory = cat;
+                };
+                uploadCategoryBtns.appendChild(upBtn);
+
+                const opt = document.createElement('option');
+                opt.value = cat; opt.innerText = cat;
+                editSelectCat.appendChild(opt);
+            }
+
+            const adBtn = document.createElement('button');
+            adBtn.className = `tag-btn ${cat === 'Tất cả' ? 'active' : 'bg-transparent border border-[#DBDBDB]'}`;
+            adBtn.innerText = cat;
+            adBtn.onclick = () => {
+                document.querySelectorAll('#admin-tags-container .tag-btn').forEach(b => {
+                     b.classList.remove('active');
+                     b.classList.add('bg-transparent', 'border', 'border-[#DBDBDB]');
+                });
+                adBtn.classList.add('active');
+                adBtn.classList.remove('bg-transparent', 'border', 'border-[#DBDBDB]');
+                currentAdminFilter = cat;
+                renderAdminList();
+            };
+            adminTagsContainer.appendChild(adBtn);
+        });
+
+        function listenProductsRealtime() {
+            const q = query(collection(db, "products"), orderBy("createdAt", "desc"));
+            onSnapshot(q, (querySnapshot) => {
+                shoesData = [];
+                querySnapshot.forEach((doc) => {
+                    shoesData.push({ id: doc.id, ...doc.data() });
+                });
+                
+                document.getElementById('post-count-desktop').innerText = shoesData.length;
+                document.getElementById('post-count-mobile').innerText = shoesData.length;
+
+                renderCatalog();
+                if (!adminSec.classList.contains('hidden')) renderAdminList();
+            }, (error) => {
+                catalogGrid.innerHTML = '<div class="w-full text-center text-red-500 font-medium mt-10">Mất kết nối với máy chủ</div>';
+            });
+        }
+
+        // RENDER GRID CHUẨN WEB 1 VỚI TÔNG MÀU XÁM
+        function renderCatalog() {
+            loader.classList.add('hidden');
+            catalogGrid.classList.remove('hidden');
+            catalogGrid.innerHTML = '';
+
+            let filtered = currentFilter === 'Tất cả' ? shoesData : shoesData.filter(s => s.category === currentFilter);
+            if(currentFilter === 'Tất cả' && filtered.length > 50) filtered = filtered.slice(0, 50);
+
+            if(filtered.length === 0) {
+                catalogGrid.innerHTML = '<div class="w-full text-center text-[#737373] text-[16px] font-medium mt-10">Chưa có sản phẩm trong mục này.</div>';
+                return;
+            }
+
+            filtered.forEach(item => {
+                const itemWrapper = document.createElement('div');
+                itemWrapper.className = 'masonry-item animate-fade-up';
+                
+                const card = document.createElement('div');
+                card.className = 'product-card cursor-pointer flex flex-col group';
+                
+                const optUrl = item.imageUrl.includes("tr=") ? item.imageUrl : item.imageUrl + "?tr=w-600,f-webp,q-85";
+                
+                const sizeVal = item.sizeText ? item.sizeText.trim() : "";
+                const isNoSize = sizeVal === "" || sizeVal.toLowerCase() === "no size";
+                
+                const noteHtml = item.noteText ? `<p class="text-[15px] md:text-[17px] font-bold text-[#262626] uppercase leading-tight tracking-tight">${item.noteText}</p>` : '';
+                const sizeHtml = isNoSize ? '' : `<p class="text-[14px] md:text-[15px] font-semibold text-[#737373] uppercase tracking-wide ${item.noteText ? 'mt-1' : ''}">Size: ${item.sizeText}</p>`;
+                
+                const hasInfo = Boolean(item.noteText || !isNoSize);
+                const infoBoxHtml = hasInfo ? `
+                    <div class="w-full bg-[#FAFAFA] py-3.5 px-3 flex flex-col items-center justify-center text-center border-t border-[#EFEFEF]">
+                        ${noteHtml}
+                        ${sizeHtml}
+                    </div>
+                ` : '';
+                
+                card.innerHTML = `
+                    <div class="w-full bg-[#FAFAFA] overflow-hidden flex items-center justify-center">
+                        <img src="${optUrl}" alt="Product" class="w-full h-auto block transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                    </div>
+                    ${infoBoxHtml}
+                `;
+
+                card.onclick = () => {
+                    modalImg.src = item.imageUrl + "?tr=w-1000,f-webp,q-90";
+                    
+                    if (isNoSize) {
+                        modalSize.innerText = ""; modalSize.classList.add('hidden');
+                    } else {
+                        modalSize.innerText = "Size: " + item.sizeText; modalSize.classList.remove('hidden');
+                    }
+                    
+                    if (item.noteText) {
+                        modalNote.innerText = item.noteText; modalNote.classList.remove('hidden');
+                    } else {
+                        modalNote.innerText = ""; modalNote.classList.add('hidden');
+                    }
+                    
+                    modal.classList.remove('hidden');
+                };
+                
+                itemWrapper.appendChild(card);
+                catalogGrid.appendChild(itemWrapper);
+            });
+        }
+        
+        document.getElementById('close-modal').onclick = () => modal.classList.add('hidden');
+
+        document.getElementById('admin-trigger-btn').onclick = () => {
+            document.getElementById('password-modal').classList.remove('hidden');
+            document.getElementById('pass-input').value = '';
+            document.getElementById('pass-error').classList.add('hidden');
+        };
+        document.getElementById('cancel-pass-btn').onclick = () => document.getElementById('password-modal').classList.add('hidden');
+        
+        document.getElementById('submit-pass-btn').onclick = checkPass;
+        document.getElementById('pass-input').addEventListener('keypress', (e) => { if(e.key === 'Enter') checkPass(); });
+        
+        function checkPass() {
+            // PASS 5312 CHO WEB NGHIENCROCS
+            if (document.getElementById('pass-input').value === '5312') {
+                document.getElementById('password-modal').classList.add('hidden');
+                adminSec.classList.remove('hidden');
+                loadStatsForAdmin();
+                renderAdminList();
+            } else { 
+                document.getElementById('pass-error').classList.remove('hidden'); 
+            }
+        }
+        document.getElementById('close-admin').onclick = () => adminSec.classList.add('hidden');
+
+        const uploadBtn = document.getElementById('upload-btn');
+        uploadBtn.onclick = async () => {
+            const file = document.getElementById('image-input').files[0];
+            const size = document.getElementById('upload-size').value.trim();
+            const note = document.getElementById('upload-note').value.trim();
+            const sts = document.getElementById('upload-status');
+            
+            if(!file) { sts.innerHTML = "<span>Vui lòng chọn hình ảnh.</span>"; return; }
+            
+            uploadBtn.disabled = true; uploadBtn.innerText = "Đang xử lý...";
+            sts.innerHTML = "<span>Đang tối ưu & nén ảnh...</span>";
+
+            try {
+                const compressedBlob = await compressImage(file, 1200, 0.82);
+                const fileNameToSave = "nc-" + Date.now() + ".jpg";
+
+                sts.innerHTML = "<span>Đang tải lên ImageKit...</span>";
+                const formData = new FormData();
+                
+                formData.append("file", compressedBlob, fileNameToSave);
+                formData.append("fileName", fileNameToSave);
+                // UP VÀO FOLDER NGHIENCROCS
+                formData.append("folder", "/nghiencrocs"); 
+
+                const resIK = await fetch(IK_UPLOAD_ENDPOINT, { 
+                    method: "POST", 
+                    headers: { "Authorization": IK_AUTH }, 
+                    body: formData 
+                });
+                
+                if (!resIK.ok) {
+                    const errInfo = await resIK.json();
+                    throw new Error("ImageKit từ chối: " + (errInfo.message || "Lỗi không xác định"));
+                }
+                const ikData = await resIK.json();
+
+                sts.innerHTML = "<span>Đang lưu vào kho Firebase...</span>";
+                await addDoc(collection(db, "products"), {
+                    imageUrl: ikData.url,
+                    imageKitFileId: ikData.fileId,
+                    category: activeUploadCategory,
+                    sizeText: size, 
+                    noteText: note,
+                    createdAt: serverTimestamp() 
+                });
+
+                sts.innerHTML = "<span class='text-green-500'>Thêm sản phẩm thành công!</span>";
+                document.getElementById('image-input').value = '';
+                document.getElementById('upload-size').value = '';
+                document.getElementById('upload-note').value = '';
+            } catch(e) { 
+                sts.innerHTML = `<span class="text-red-500">Lỗi: ${e.message}</span>`; 
+                console.error(e);
+            }
+            
+            setTimeout(() => { 
+                uploadBtn.disabled = false; 
+                uploadBtn.innerText = "Lưu Sản Phẩm"; 
+                sts.innerHTML = ""; 
+            }, 3500);
+        };
+
+        let currentEditId = null;
+        const editModal = document.getElementById('admin-edit-modal');
+        const confirmModal = document.getElementById('custom-confirm-modal');
+        
+        function renderAdminList() {
+            adminProductList.innerHTML = '';
+            let filtered = currentAdminFilter === 'Tất cả' ? shoesData : shoesData.filter(s => s.category === currentAdminFilter);
+
+            filtered.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'relative aspect-square bg-white group overflow-hidden rounded-2xl flex items-center justify-center border border-[#DBDBDB]';
+                div.innerHTML = `
+                    <img src="${item.imageUrl}?tr=w-300,h-300,fo-auto" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-[#262626]/80 backdrop-blur-xs flex flex-col items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity p-2">
+                        <button class="edit-btn btn-solid w-full text-[12px] py-2 bg-white text-[#262626] hover:bg-[#EFEFEF] shadow-none">Sửa</button>
+                        <button class="del-btn btn-outline w-full text-[12px] py-2 border-white text-white hover:bg-white/20">Xóa</button>
+                    </div>
+                `;
+                
+                div.querySelector('.edit-btn').onclick = () => {
+                    currentEditId = item.id;
+                    document.getElementById('edit-category').value = item.category || 'Crocs Collab';
+                    document.getElementById('edit-size').value = item.sizeText || '';
+                    document.getElementById('edit-note').value = item.noteText || '';
+                    document.getElementById('edit-status').innerHTML = '';
+                    editModal.classList.remove('hidden');
+                };
+
+                div.querySelector('.del-btn').onclick = () => {
+                    pendingDeleteId = item.id;
+                    confirmModal.classList.remove('hidden');
+                };
+                adminProductList.appendChild(div);
+            });
+        }
+
+        document.getElementById('confirm-cancel-btn').onclick = () => {
+            confirmModal.classList.add('hidden');
+            pendingDeleteId = null;
+        };
+
+        document.getElementById('confirm-delete-btn').onclick = async () => {
+            if (!pendingDeleteId) return;
+            const delSts = document.getElementById('admin-delete-status');
+            confirmModal.classList.add('hidden');
+            delSts.innerText = "Đang tiến hành xóa...";
+            try {
+                await deleteDoc(doc(db, "products", pendingDeleteId));
+                delSts.innerText = "Đã xóa sản phẩm.";
+                pendingDeleteId = null;
+                setTimeout(() => { delSts.innerText = ""; }, 2000);
+            } catch(e) { delSts.innerText = "Lỗi: " + e.message; }
+        };
+
+        document.getElementById('cancel-edit-btn').onclick = () => editModal.classList.add('hidden');
+        document.getElementById('save-edit-btn').onclick = async () => {
+            const newCat = document.getElementById('edit-category').value;
+            const newSize = document.getElementById('edit-size').value.trim();
+            const newNote = document.getElementById('edit-note').value.trim();
+            const sts = document.getElementById('edit-status');
+            
+            sts.innerHTML = "<span>Đang cập nhật...</span>";
+            try {
+                await updateDoc(doc(db, "products", currentEditId), {
+                    category: newCat, sizeText: newSize, noteText: newNote
+                });
+                sts.innerHTML = "<span class='text-green-500'>Hoàn tất.</span>";
+                setTimeout(() => { editModal.classList.add('hidden'); }, 1000);
+            } catch(e) { sts.innerHTML = `<span class="text-red-500">Lỗi: ${e.message}</span>`; }
+        };
+
+        function init() {
+            listenProductsRealtime();
+            updatePageViews();
+        }
+        init();
+    </script>
+</body>
+</html>
